@@ -42,7 +42,7 @@ sum [10.;9.;8.;7.;6.;5.;4.;3.;2.;1.] ;;
 
 (* 5. Get the Highest Value of a given number list  *)
 
-let list = [4; 3;7;6;1;7;4;8;3;4] ;;
+let list1 = [4; 3;7;6;1;7;4;8;3;4] ;;
 
 
 let maxNum = function
@@ -50,14 +50,43 @@ let maxNum = function
   | x::xs -> List.fold_left max x xs ;;
 
 
-maxNum list ;;
+maxNum list1 ;;
 
 
-(* 6. *)
+(* 6. Generates a Tuple List*)
 
-(* 7. *)
+let rec tuple (a, b) =
+if a == 0 then
+  []
+else
+  (b, b) :: tuple(a-1, b);;
+  
+tuple (5,2) ;; 
+
+(* 7. returns how many times a number is contained in a list*)
    
-(* 8. *)
+let rec occours n list =
+match list with
+| [] -> 0
+| head :: tail ->
+  if head = n then
+    1 + occours n tail
+  else
+    occours n tail;;
+
+occours 4 list1 ;; 
+   
+(* 8. Filters out a specific number of a list *)
+   
+let filter n list =
+  let rec go list acc = match l with
+    | [] -> List.rev acc
+    | h::t when n = h -> go t acc
+    | h::t -> go t (h::acc)
+  in go list [] ;; 
+  
+filter 4 list1 ;; 
+   
    
 (* 9. reverses a list  *)
 
@@ -69,6 +98,6 @@ let rev =
   fun l -> rev_append [] l;;
 
 
-rev [0;1;2;3;4;5;6;7;8;9]
+rev [0;1;2;3;4;5;6;7;8;9] ;;
 
 
